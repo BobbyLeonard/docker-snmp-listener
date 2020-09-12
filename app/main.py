@@ -21,7 +21,7 @@ from pysnmp.proto.api import v2c
 #from pysnmp import debug
 #debug.setLogger(debug.Debug('all'))
 
-filename="/app/log/snmplistener.log.{}".format(datetime.now().strftime('%s'))
+filename="/app/snmplistener.log.{}".format(datetime.now().strftime('%s'))
 
 def writeLogs(stringToWrite):
 	with open(filename,'a+') as f: 
