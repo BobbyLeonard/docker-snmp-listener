@@ -9,6 +9,7 @@ Install git and docker, make sure docker service is running.
 `docker build -t snmplistener .`
 
 edit envvars.txt to choose username and passwords to connect to this listener.
+
 Authorization uses SHA224, Privacy uses AES192
 
 `docker run --env-file envvars.txt --name snmplistener -d -v ~/snmp-listener-logs:/app/log -p 1161:1161/udp snmplistener`
