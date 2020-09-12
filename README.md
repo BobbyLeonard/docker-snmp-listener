@@ -8,7 +8,7 @@ Install git and docker, make sure docker service is running.
 
 `docker build -t snmplistener .`
 
-edit envvars.txt to choose username and passwords to connect to this listener.
+Edit `envvars.txt` to choose username and passwords to connect to this listener.
 
 Authorization uses SHA224, Privacy uses AES192
 
