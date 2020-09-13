@@ -12,14 +12,16 @@ Authorization uses SHA224, Privacy uses AES192 and the service listens on port 1
 
 `docker build -t snmplistener .`
 
+You can now delete `envvars.txt`
+
 `docker run --name snmplistener -d -v ~/snmp-listener-logs:/app/log -p 1161:1161/udp snmplistener`
 
 Logs of received traps will be stored in `~/snmp-listener-logs/`
 
 To check the container for errors : `docker logs snmplistener`
 
-The default securityEngineId is `0102030405060708`
+The default securityEngineId is 0102030405060708
 
-If you require a differnet EngineID edit the following line in main.py before building :
+If you require a differnet EngineID edit the following line in main.py before building.
 
 `securityEngineId=v2c.OctetString(hexValue='0102030405060708')`
