@@ -1,3 +1,4 @@
+[DEFAULT]
 SNMPUSER=username
 SNMPAUTH=authpasswd
 SNMPPRIV=privpasswd

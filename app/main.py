@@ -1,8 +1,12 @@
 import os
 from datetime import datetime
 from pysnmp.smi import builder, view, rfc1902
-# Download mibs from https://kb.vmware.com/s/article/1013445 - unzip and change dir below.
-# Not sure id this is working fully, needs testing.
+
+import configparser
+config = configparser.ConfigParser()
+config.read('envvars.txt')
+
+
 
 # load mibs
 mibBuilder = builder.MibBuilder()
@@ -17,7 +21,6 @@ from pysnmp.entity.rfc3413 import ntfrcv
 from pysnmp.proto.api import v2c
 
 #Debug logging :
-
 #from pysnmp import debug
 #debug.setLogger(debug.Debug('all'))
 
@@ -42,7 +45,6 @@ snmpEngine = engine.SnmpEngine()
 
 
 # Transport setup
-
 # UDP over IPv4
 config.addTransport(
     snmpEngine,
@@ -53,9 +55,9 @@ config.addTransport(
 # SNMPv3/USM setup
 
 config.addV3User(
-    snmpEngine, os.environ['SNMPUSER'],
-    config.usmHMAC128SHA224AuthProtocol, os.environ['SNMPAUTH'],
-    config.usmAesCfb192Protocol, os.environ['SNMPPRIV'],
+    snmpEngine, config['DEFAULT']['SNMPUSER'],
+    config.usmHMAC128SHA224AuthProtocol, config['DEFAULT']['SNMPAUTH'],
+    config.usmAesCfb192Protocol, config['DEFAULT']['SNMPPRIV'],
     securityEngineId=v2c.OctetString(hexValue='0102030405060708')
 )
 
