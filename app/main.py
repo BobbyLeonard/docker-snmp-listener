@@ -3,10 +3,8 @@ from datetime import datetime
 from pysnmp.smi import builder, view, rfc1902
 
 import configparser
-config = configparser.ConfigParser()
-config.read('envvars.txt')
-
-
+userConfig = configparser.ConfigParser()
+userConfig.read('envvars.txt')
 
 # load mibs
 mibBuilder = builder.MibBuilder()
@@ -55,9 +53,9 @@ config.addTransport(
 # SNMPv3/USM setup
 
 config.addV3User(
-    snmpEngine, config['DEFAULT']['SNMPUSER'],
-    config.usmHMAC128SHA224AuthProtocol, config['DEFAULT']['SNMPAUTH'],
-    config.usmAesCfb192Protocol, config['DEFAULT']['SNMPPRIV'],
+    snmpEngine, userConfig['DEFAULT']['SNMPUSER'],
+    config.usmHMAC128SHA224AuthProtocol, userConfig['DEFAULT']['SNMPAUTH'],
+    config.usmAesCfb192Protocol, userConfig['DEFAULT']['SNMPPRIV'],
     securityEngineId=v2c.OctetString(hexValue='0102030405060708')
 )
 
