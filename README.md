@@ -1,5 +1,7 @@
 # docker-snmp-listener
 
+**SNMP trap recorder, saves all received traps to a text file on the host**
+
 Install git and docker, make sure docker service is running.
 
 `git clone https://github.com/BobbyLeonard/docker-snmp-listener.git`
